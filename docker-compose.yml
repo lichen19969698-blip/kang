@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: electronic-board-website
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - VITE_APP_ID=electronic-board-website
+      - SMTP_HOST=smtp.163.com
+      - SMTP_PORT=465
+      - SMTP_USER=15829053969@163.com
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-RBUf735PdYbfYCam}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
